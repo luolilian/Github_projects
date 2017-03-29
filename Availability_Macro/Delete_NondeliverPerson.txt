@@ -1,0 +1,20 @@
+'Ctrl+d
+Sub delete_nondeliverPerson()
+Range("H2").Select
+' delete functional and nondeliver emplyees.
+Sheet4.Range("H2").AutoFilter Field:=8, Criteria1:=Array( _
+        "Corporate", "HR", "IDU - MCS Ops", "IDU - MCS EI", "IDU - MCS ROW Others"), Operator:= _
+        xlFilterValues
+Range("A3:AS300").Select
+Selection.EntireRow.Delete
+ActiveSheet.Range("$A$2:$M$300").AutoFilter Field:=8
+' delete sales and resigned employee(Charlie and Jennifer)
+Range("G2").Select
+Sheet4.Range("H2").AutoFilter Field:=7, Criteria1:=Array( _
+       "Automotive - Americas - TMG", "Automotive Sales"), Operator:= _
+        xlFilterValues
+Range("A3:AS300").Select
+Selection.EntireRow.Delete
+ActiveSheet.Range("$A$2:$M$300").AutoFilter Field:=7
+
+End Sub

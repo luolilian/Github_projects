@@ -1,0 +1,32 @@
+'Ctrl+i
+Sub Copy_availability()
+    Dim sourceFile As String
+    Dim targetFile As String
+    Dim filePath  As String
+    Dim fileName As String
+    Dim sourceFileRow As Integer
+    Dim targetFileRos As Integer
+    Dim currentWeek As String
+'set current week to get the latest resource from IRMA report.
+    currentWeek = Application.WorksheetFunction.WeekNum(Date)
+    fileName = "Availability_wk" + currentWeek
+    targetFile = "availability_report_China"
+    filePath = Workbooks("availability_report_China").Path
+    sourceFile = filePath + "\" + fileName
+    MsgBox sourceFile
+    Workbooks.Open (sourceFile)
+    sourceFileRow = Range("A1").CurrentRegion.Rows.Count
+    Range("A1").CurrentRegion.Select
+    Selection.Copy
+    Windows(targetFile).Activate
+    Worksheets(4).Select
+    targetFileRow = Range("A1").CurrentRegion.Rows.Count
+    If (targetFileRow < sourceFileRow) Then
+          Cells.Select
+          ActiveSheet.Paste
+    Else
+          MsgBox "Require to clear the contents."
+          Exit Sub
+    End If
+
+End Sub

@@ -1,0 +1,10 @@
+Sub alignment_cells()
+'
+' alignment_cells Macro
+'
+    Rows("4:250").Select
+    Selection.RowHeight = 16
+    Columns("J:M").Select
+    Range("J2").Activate
+    Selection.EntireColumn.Hidden = True
+End Sub
